@@ -1,17 +1,23 @@
 import streamlit as st
+import time
+
 st.title("Todo List")
 
 if 'todo' not in st.session_state:
     st.session_state.todo = []
 if "edit_index" not in st.session_state:
     st.session_state.edit_index = None
+if "button_disabled" not in st.session_state:
+    st.session_state.button_disabled = False
 
 tasks = st.text_input("enter your Item here")
 
 
 if st.button("Add Items"):
     st.session_state.todo.append(tasks)
+    st.session_state.button_disabled = True
     st.rerun()
+st.session_state.button_disabled = False
     
          
 
